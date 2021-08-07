@@ -375,8 +375,9 @@ build: _build/Done.proxy
 	# Target "build" completed
 
 _build/Done.proxy: _build/MakeIndexes.proxy _build/PoplogCommander.proxy _build/NoInit.proxy _build/POPLOG_VERSION
-	find _build/poplog_base -name '*-' -exec rm -f {} \; # Remove the backup files
-	find _build/poplog_base -xtype l -exec rm -f {} \;   # Remove bad symlinks (we have some from poppackages)
+	find _build/poplog_base -name '*-' -exec rm -f {} \;     # Remove the backup files
+	find _build/poplog_base -xtype l -exec rm -f {} \;       # Remove bad symlinks (we have some from poppackages)
+	find _build/poplog_base -name .gitignore -exec rm {} \;  # Remove the .gitignores that were acting as .gitkeeps
 	touch $@
 
 _build/POPLOG_VERSION: _build/Base.proxy
